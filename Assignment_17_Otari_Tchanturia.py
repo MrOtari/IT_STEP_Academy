@@ -1,5 +1,7 @@
+from multipledispatch import dispatch
+
 class Person:
-    def __init__(self, name, deposit = 1000, loan = 0):
+    def __init__(self, name, deposit=1000, loan=0):
         self.name = name
         self.deposit = deposit
         self.loan = loan
@@ -13,17 +15,41 @@ class House:
         self.ID = ID
         self.price = price
         if not isinstance(owner, Person):
-            raise TypeError("Wrong person")
-        else: self.owner = owner
-        self.status = "for sale"
+            raise TypeError("Wrong Person!")
+        else:
+            self.owner = owner
+        self.status = "For Sale"
     
-    def sell(self, buyer):
-        print(f'{buyer}')
+    def __str__(self):
+        return f"House price: {self.price}, Owner: {self.owner.name}, Status: {self.status}"
+    
+    @dispatch(Person)
+    def sell(self, home_buyer):
+        self.owner.deposit += self.price
+        home_buyer.deposit -= self.price
+        self.owner = home_buyer
+        self.status = "Sold"
+        print(f'This house has been bought for {self.price} dollars by {self.owner.name}')
+    
+    @dispatch(Person, int)
+    def sell(self, home_buyer, loan_amount):
+        self.owner.deposit += self.price
+        home_buyer.loan += loan_amount
+        self.owner = home_buyer
+        self.status = "Sold by Loan"
+        print(f'This house has been bought by loan for {self.price} dollars by {self.owner.name}')
 
 
-seller = Person("seller")
-buyer = Person("buyer")
-home = House("GE1234", 1200, seller)
+seller = Person("otari")
+buyer = Person("irakli")
+home = House("GE1234", 600, seller)
 
-print(home.status)
-print(home.owner)
+print(seller)
+print(buyer)
+print(home)
+
+home.sell(buyer, 700)
+
+print(seller)
+print(buyer)
+print(home)
