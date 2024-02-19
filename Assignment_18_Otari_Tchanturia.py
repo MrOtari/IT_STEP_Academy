@@ -53,7 +53,7 @@ def commission(value):
         return wrapper
     return inner
 
-com = 4 # Commission amount
+com = 1 # Commission amount
 
 @commission(com)
 def transaction(balance, tran_amount):
