@@ -118,7 +118,7 @@ class ATM:
             print("Account not found!")
 
 # Testing the ATM class
-log = ATM("GE12345", 1234)
+log = ATM(input("Enter account number: "), int(input("Enter pin: ")))
 log.check_balance()
-log.topup(500)
-log.withdraw(1000)
+log.topup(int(input("Enter top-up amount: ")))
+log.withdraw(int(input("Enter withdrawal amount: ")))
