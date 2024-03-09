@@ -1,0 +1,23 @@
+[
+  {
+    "Name": "otari",
+    "Surname": "tchanturia",
+    "Account_number": "GE12345",
+    "Pin": 1234,
+    "Balance": 1588
+  },
+  {
+    "Name": "mariami",
+    "Surname": "giorgobiani",
+    "Account_number": "GE54321",
+    "Pin": 4321,
+    "Balance": 15000
+  },
+  {
+    "Name": "unknown",
+    "Surname": "person",
+    "Account_number": "GE67890",
+    "Pin": 5678,
+    "Balance": 27000
+  }
+]
